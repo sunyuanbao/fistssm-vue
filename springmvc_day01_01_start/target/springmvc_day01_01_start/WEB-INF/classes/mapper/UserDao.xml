@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itcast.dao.UserDao">
+
+    <resultMap id="BaseResultMap" type="cn.itcast.user.User">
+        <!--        <id column="user_id" jdbcType="INTEGER" property="userId"/>-->
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+    </resultMap>
+    <resultMap id="UserAllBase" type="cn.itcast.user.UserAll">
+        <result column="area" jdbcType="VARCHAR" property="area"/>
+    </resultMap>
+
+    <select id="findUser" resultMap="BaseResultMap">
+        select name,password from username
+        where name = #{name}
+        and password = #{password}
+    </select>
+    <select id="findAll" resultType="cn.itcast.user.UserAll">
+        select area,
+             alliance,
+             team,
+             id,
+             name,
+             task1,
+             task2,
+             task3,
+             task4,
+             task5,
+             task6,
+             task7,
+             task8,
+             task9,
+             task10
+         from stzb
+
+    </select>
+    <select id="areaAll" resultMap="UserAllBase">
+        select area,
+             alliance,
+             team,
+             id,
+             name,
+             task1,
+             task2,
+             task3,
+             task4,
+             task5,
+             task6,
+             task7,
+             task8,
+             task9,
+             task10
+         from stzb
+         where area = #{area}
+
+    </select>
+
+    <delete id="deleteInvition" parameterType="java.lang.Integer" >
+        delete from stzb
+        where
+        area=#{area}
+        and alliance=#{alliance}
+        and id=#{id}
+    </delete>
+
+</mapper>
